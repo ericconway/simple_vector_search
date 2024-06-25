@@ -1,0 +1,39 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Search</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Document Search</h1>
+    <input type="text" id="prompt" placeholder="Enter your search query">
+    <button onclick="search()">Search</button>
+    <div id="results"></div>
+
+    <script>
+        async function search() {
+            const prompt = document.getElementById('prompt').value;
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = 'Searching...';
+            
+            try {
+                const response = await axios.post('http://localhost:8000/search', { prompt });
+                const results = response.data;
+                
+                resultsDiv.innerHTML = results.map(result => `
+                    <div>
+                        <h3>${result.file_path}</h3>
+                        <p>${result.content}</p>
+                        <p>Score: ${result.score}</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                resultsDiv.innerHTML = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

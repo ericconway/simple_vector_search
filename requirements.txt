@@ -1,0 +1,28 @@
+# requirements.txt
+
+# Qdrant client
+qdrant-client
+
+# FastAPI and ASGI server
+fastapi==0.95.2
+uvicorn==0.22.0
+
+# For handling multipart/form-data
+python-multipart==0.0.6
+
+# Sentence transformers for embeddings
+sentence-transformers==2.2.2
+
+# Document processing
+pypdf==3.8.1
+docx2txt==0.8
+beautifulsoup4==4.12.2
+
+# Testing
+pytest==7.3.1
+
+# HTTP client for testing API
+httpx==0.24.1
+
+# For type checking (optional but recommended)
+mypy==1.3.0
